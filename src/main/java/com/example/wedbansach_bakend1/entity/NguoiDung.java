@@ -32,7 +32,7 @@ public class NguoiDung {
     @Column(name = "dia_chi_giao_hang")
     private String diaChiGiaoHang;
     @Column(name = "da_kich_hoat")
-    private boolean daKichHoat;
+    private Boolean daKichHoat;
     @Column(name = "ma_kich_hoat")
     private String maKichHoat;
     @Column(name = "avatar", columnDefinition = "LONGTEXT")

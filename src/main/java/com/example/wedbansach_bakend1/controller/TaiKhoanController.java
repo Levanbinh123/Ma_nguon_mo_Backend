@@ -34,7 +34,7 @@ public class TaiKhoanController {
     private JwtService jwtService;
 
 
-    @PostMapping("dang-ky")
+    @PostMapping("/dang-ky")
     public ResponseEntity<?> dangKyNguoiDung(@Validated @RequestBody NguoiDung nguoiDung) {
         ResponseEntity<?> response=taiKhoanService.dangKyNguoiDung(nguoiDung);
         return response;
