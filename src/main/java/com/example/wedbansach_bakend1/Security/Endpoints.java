@@ -19,10 +19,11 @@ public class Endpoints {
             "/tai-khoan/kich-hoat",
             "/nguoi-dung",
             "/nguoi-dung/**",
+            "/tai-khoan/dang-ky",
     };
 
     public static final String[] PUBLIC_POST_ENDPOINS = {
-            "/tai-khoan/dang-ky",
+
             "/tai-khoan/dang-nhap",
             "/chi-tiet-don-hang",
             "/the-loai/**",
@@ -30,14 +31,18 @@ public class Endpoints {
             "/nguoi-dung",
             "/nguoi-dung/**",
             "/don-hang",
+            "/sach"
 
     };
 
     public static final String[] ADMIN_GET_ENDPOINS = {
-
+            "/nguoi-dung",
+            "/nguoi-dung/**",
     };
     public static final String[] ADMIN_POST_ENDPOINS = {
             "/sach",
             "/sach/**",
+
+
     };
 }

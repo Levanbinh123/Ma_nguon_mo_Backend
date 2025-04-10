@@ -1,15 +1,24 @@
 package com.example.wedbansach_bakend1.Service;
 
+import com.example.wedbansach_bakend1.Service.EmailSerVice;
 import com.example.wedbansach_bakend1.dao.NguoiDungRepository;
 import com.example.wedbansach_bakend1.entity.NguoiDung;
 import com.example.wedbansach_bakend1.entity.ThongBao;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.AuthenticationException;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import java.io.Console;
+import javax.crypto.SecretKey;
 import java.util.UUID;
+
 @Service
 public class TaiKhoanService {
     @Autowired
@@ -36,6 +45,7 @@ public class TaiKhoanService {
         nguoiDung.setMatKhau(encryptPassword);
 
 
+
         // Gán và gửi thông tin kích hoạt
         nguoiDung.setMaKichHoat(taoMaKichHoat());
         nguoiDung.setDaKichHoat(false);
@@ -46,14 +56,15 @@ public class TaiKhoanService {
         // Gửi email cho người dùng để họ kích hoạt
         guiEmailKichHoat(nguoiDung.getEmail(), nguoiDung.getMaKichHoat());
 
+
+
         return ResponseEntity.ok("Đăng ký thành công");
     }
 
-
-    private String taoMaKichHoat(){
-        // Tạo mã ngẫu nhiên
-        return UUID.randomUUID().toString();
-    }
+private String taoMaKichHoat(){
+        //tao ma ngau nhien
+        return  UUID.randomUUID().toString();
+}
 
     private void guiEmailKichHoat(String email, String maKichHoat){
         String subject = "Kích hoạt tài khoản của bạn tại WebBanSach";
@@ -62,9 +73,9 @@ public class TaiKhoanService {
         String url = "http://localhost:3000/kich-hoat/"+email+"/"+maKichHoat;
         text+=("<br/> <a href="+url+">"+url+"</a> ");
 
-        emailService.sendMessage("levanbinh171205@Gamil.com", email, subject, text);
+        emailService.sendMessage("tunletest1.email@gmail.com", email, subject, text);
     }
-
+    //kich hoat tai khoan
     public ResponseEntity<?> kichHoatTaiKHoan(String email, String maKichHoat) {
         NguoiDung nguoiDung = nguoiDungRepository.findByEmail(email);
 
@@ -84,4 +95,7 @@ public class TaiKhoanService {
             return ResponseEntity.badRequest().body(new ThongBao("Mã kích hoạt không chính xác!"));
         }
     }
+
+
+
 }
