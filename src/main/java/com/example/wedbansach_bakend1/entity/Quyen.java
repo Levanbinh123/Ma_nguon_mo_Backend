@@ -24,4 +24,20 @@ public class Quyen {
             inverseJoinColumns = @JoinColumn(name = "ma_nguoi_dung")
     )
     List<NguoiDung> danhSachNguoiDung;
+
+    public int getMaQuyen() {
+        return maQuyen;
+    }
+
+    public void setMaQuyen(int maQuyen) {
+        this.maQuyen = maQuyen;
+    }
+
+    public String getTenQuyen() {
+        return tenQuyen;
+    }
+
+    public void setTenQuyen(String tenQuyen) {
+        this.tenQuyen = tenQuyen;
+    }
 }

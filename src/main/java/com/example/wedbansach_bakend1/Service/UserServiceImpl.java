@@ -14,12 +14,14 @@ import org.springframework.stereotype.Service;
 
 import java.util.Collection;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
 public class UserServiceImpl implements UserService {
     private NguoiDungRepository nguoiDungRepository;
     private QuyenRepository quyenRepository;
+    private UserService userService;
 
     @Autowired
     public UserServiceImpl(NguoiDungRepository nguoiDungRepository, QuyenRepository quyenRepository) {
@@ -29,6 +31,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public NguoiDung findByUsername(String tenDangNhap) {
+
         return nguoiDungRepository.findByTenDangNhap(tenDangNhap);
     }
 
@@ -41,6 +44,7 @@ public class UserServiceImpl implements UserService {
         return new User(nguoiDung.getTenDangNhap(), nguoiDung.getMatKhau(), rolesToAuthorities(nguoiDung.getDanhSachQuyen()));
 
     }
+
 
     private Collection<? extends GrantedAuthority> rolesToAuthorities(Collection<Quyen> quyens) {
         return quyens.stream().map(quyen -> new SimpleGrantedAuthority(quyen.getTenQuyen())).collect(Collectors.toList());

@@ -20,10 +20,14 @@ public class Endpoints {
             "/nguoi-dung",
             "/nguoi-dung/**",
             "/tai-khoan/dang-ky",
+            "/tai-khoan/dang-nhap",
+            "/donhang",
+            "/donhang/**",
     };
 
     public static final String[] PUBLIC_POST_ENDPOINS = {
 
+            "/tai-khoan/dang-ky",
             "/tai-khoan/dang-nhap",
             "/chi-tiet-don-hang",
             "/the-loai/**",

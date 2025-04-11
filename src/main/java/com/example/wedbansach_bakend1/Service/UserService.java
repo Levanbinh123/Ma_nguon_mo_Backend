@@ -5,4 +5,5 @@ import org.springframework.boot.autoconfigure.security.servlet.UserDetailsServic
 
 public interface UserService extends UserDetailsService {
     public NguoiDung findByUsername(String username);
+
 }
